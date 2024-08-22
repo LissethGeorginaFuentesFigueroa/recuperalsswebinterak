@@ -25,5 +25,5 @@ class PersonError extends PersonState{
   const PersonError({required this.message});
 
   @override
-  List<Object> get props => [message]
+  List<Object> get props => [message];
 }

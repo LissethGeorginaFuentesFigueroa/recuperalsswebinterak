@@ -4,22 +4,22 @@ class Person {
   final int id;
   final String name;
   final String email;
-  final String url;
+  final String avatar;
 
   Person({
     required this.id,
     required this.name,
     required this.email,
-    required this.url
+    required this.avatar
   }); 
 
-  factory Person.fromJson(Map<String,dynamic> json){
-    return  Person(
-      id:json['id'] as int,
-      name: json['name'] as String,
-      email:json['email'] as String,
-      url:json['url'] as String
-     );
+  factory Person.fromJson(Map<String, dynamic> json) {
+    return Person(
+      id: json['id'] as int? ?? 0,
+      name: '${json['first_name'] ?? ''} ${json['last_name'] ?? ''}', // Combina first_name y last_name
+      email: json['email'] as String? ?? '',
+      avatar: json['avatar'] as String? ?? '',
+    );
   }
 
   Map<String, dynamic> toJson(){
@@ -27,8 +27,22 @@ class Person {
       'id':id,
       'name':name,
       'email':email,
-      'url':url
+      'avatar':avatar
     };
+  }
+
+  Person copyWith({
+    int? id,
+    String? name,
+    String? email,
+    String? avatar,
+  }) {
+    return Person(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      avatar: avatar ?? this.avatar,
+    );
   }
 
 }
