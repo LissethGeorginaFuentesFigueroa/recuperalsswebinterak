@@ -11,7 +11,6 @@ class PersonRepository {
     try {
       final response = await http.get(Uri.parse('$baseURL?page=2'));
 
-      // Imprime el cuerpo de la respuesta para depuración
       print('Response body: ${response.body}');
 
       if (response.statusCode == 200) {
